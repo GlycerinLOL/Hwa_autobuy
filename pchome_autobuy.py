@@ -6,11 +6,13 @@ import re
 import json
 import time
 import requests
+import datetime
 
 from selenium import webdriver 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
+from datetime import date
 
 
 
@@ -25,7 +27,7 @@ options = webdriver.ChromeOptions()
 options.add_argument(CHROME_PATH)  
 
 driver = webdriver.Chrome(
-    executable_path="D:\Coding\Python\PChome-AutoBuy\chromedriver.exe", options=options)
+    executable_path=DRIVER_PATH, options=options)
 driver.set_page_load_timeout(120)
 
 def login():
@@ -129,13 +131,14 @@ def main():
 抓取商品開賣資訊，並嘗試搶購
 """
 
-curr_retry = 0
-max_retry = 5   # 重試達 5 次就結束程式，可自行調整
-wait_sec = 1    # 1 秒後重試，可自行調整秒數
+target_time=datetime.datetime(2021,11,11,11,11,00)
+
+curr_time=datetime.datetime.now()
+wait_sec = 0.5    # 1 秒後重試，可自行調整秒數
 
 
 if __name__ == "__main__":
-    while curr_retry<max_retry: 
+    while curr_time<target_time: 
         driver.get(URL)
         if(driver.find_element_by_id('#btn-variable-buy-now').is_displayed()):
             print('商品開賣！')
@@ -143,7 +146,6 @@ if __name__ == "__main__":
             break
         else:
             print('商品尚未開賣！')
-            curr_retry+=1
             time.sleep(wait_sec)
             
 
