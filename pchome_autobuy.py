@@ -131,7 +131,7 @@ def main():
 抓取商品開賣資訊，並嘗試搶購
 """
 
-target_time=datetime.datetime(2021,11,11,11,11,00)
+target_time=datetime.datetime(2021,11,11,11,12,00)
 
 curr_time=datetime.datetime.now()
 wait_sec = 0.5    # 1 秒後重試，可自行調整秒數
