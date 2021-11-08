@@ -115,14 +115,14 @@ def main():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    '''
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    '''
+    
 
     os.system("pause")
 
