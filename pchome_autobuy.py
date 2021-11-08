@@ -18,8 +18,7 @@ from selenium.webdriver.common.by import By
 匯入欲搶購的連結、登入帳號、登入密碼及其他個資
 """
 from settings import (
-    URL, DRIVER_PATH, CHROME_PATH, ACC, PWD,
-    BuyerSSN, BirthYear, BirthMonth, BirthDay, multi_CVV2Num    
+    URL, DRIVER_PATH, CHROME_PATH, ACC, PWD,    
 )
 
 options = webdriver.ChromeOptions()  
@@ -123,6 +122,8 @@ def main():
     driver.execute_script("arguments[0].click();", button)
     '''
 
+    os.system("pause")
+
 
 """
 抓取商品開賣資訊，並嘗試搶購
@@ -136,7 +137,7 @@ wait_sec = 1    # 1 秒後重試，可自行調整秒數
 if __name__ == "__main__":
     while curr_retry<max_retry: 
         driver.get(URL)
-        if(driver.find_element_by_id('#btn-variable-buy-now').is_enabled()):
+        if(driver.find_element_by_id('#btn-variable-buy-now').is_displayed()):
             print('商品開賣！')
             main()
             break
@@ -147,4 +148,3 @@ if __name__ == "__main__":
             
 
 
-os.system("pause")
