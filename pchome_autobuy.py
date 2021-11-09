@@ -32,12 +32,12 @@ driver.set_page_load_timeout(120)
 
 def login():
     WebDriverWait(driver, 2).until(
-        expected_conditions.presence_of_element_located((By.XPATH, '/html/body/div[6]/div[1]/div/div/div/div/div/div/div/div/div[2]/div/div/form/div[1]/div/div/input'))
+        expected_conditions.presence_of_element_located((By.CSS_SELECTOR, 'form.simple_form:nth-child(7) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > input:nth-child(1)'))
     )
-    elem = driver.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/div/div/div/div/div/div[2]/div/div/form/div[1]/div/div/input')
+    elem = driver.find_element_by_css_selector('form.simple_form:nth-child(7) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > input:nth-child(1)')
     elem.clear()
     elem.send_keys(ACC)
-    elem = driver.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/div/div/div/div/div/div[2]/div/div/form/div[2]/div/div/input')
+    elem = driver.find_element_by_css_selector('form.simple_form:nth-child(7) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > input:nth-child(1)')
     elem.clear()
     elem.send_keys(PWD)
     WebDriverWait(driver, 20).until(
@@ -61,6 +61,14 @@ def click_button_id(Btnid):
         )
     )
     driver.find_element_by_id(Btnid).click()
+
+def click_button_css(Btncss):
+    WebDriverWait(driver,20).until(
+        expected_conditions.element_to_be_clickable(
+            (By.CSS_SELECTOR,Btncss)
+        )
+    )
+    driver.find_element_by_css_selector(Btncss).click()
 
 
 
@@ -86,11 +94,6 @@ def main():
     click_button_id('#btn-variable-buy-now')
 
     """
-    前往購物車
-    """
-    driver.get("https://www.huahuacomputer.com.tw/cart")
-
-    """
     登入帳戶（若有使用 CHROME_PATH 記住登入資訊，第二次執行時可註解掉）
     """
     try:
@@ -102,15 +105,15 @@ def main():
     前往結帳 (一次付清) (要使用 JS 的方式 execute_script 點擊)
     """
     WebDriverWait(driver, 20).until(
-        expected_conditions.element_to_be_clickable((By.XPATH, '/html/body/div[6]/div[1]/div/div/div/div[3]/div[5]/div[2]/section/div[2]/a'))
+        expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, "a.btn:nth-child(2)"))
     )
-    driver.find_element_by_xpath('/html/body/div[6]/div[1]/div/div/div/div[3]/div[5]/div[2]/section/div[2]/a').click()
+    driver.find_element_by_css_selector("a.btn:nth-child(2)").click()
 
 
     """
     勾選同意（注意！若帳號有儲存付款資訊的話，不需要再次勾選，請註解掉！）
     """
-    click_button(xpaths['check_agree'])
+    click_button_css(".checkbox > label:nth-child(1) > input:nth-child(1)")
 
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
