@@ -86,7 +86,7 @@ xpaths = {
 }
 
 def main():
-    
+
     """
     放入購物車
     """
@@ -117,14 +117,14 @@ def main():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    """
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    """
+    
 
     os.system("pause")
     
@@ -134,10 +134,10 @@ def main():
 抓取商品開賣資訊，並嘗試搶購
 """
 
-target_time=datetime.datetime(2021,11,11,11,12,00)
+target_time=datetime.datetime(2021,11,11,23,12,00)
 
 curr_time=datetime.datetime.now()
-wait_sec = 0.5    # 1 秒後重試，可自行調整秒數
+wait_sec = 0.3    # 1 秒後重試，可自行調整秒數
 
 
 if __name__ == "__main__":
