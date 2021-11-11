@@ -117,14 +117,14 @@ def main():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    '''
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    '''
+    
 
     os.system("pause")
 
@@ -136,6 +136,7 @@ def main2():
     click_button_id('btn-main-checkout')
 
     driver.get("https://www.huahuacomputer.com.tw/cart")
+    driver.refresh()
 
     """
     登入帳戶（若有使用 CHROME_PATH 記住登入資訊，第二次執行時可註解掉）
@@ -162,14 +163,14 @@ def main2():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    '''
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    '''
+    
 
     os.system("pause")
     
@@ -188,7 +189,7 @@ wait_sec = 0.5    # 1 秒後重試，可自行調整秒數
 if __name__ == "__main__":
     while curr_time<target_time: 
         driver.get(URL)
-        if(driver.find_element_by_id("#btn-variable-buy-now").is_enabled()):
+        if(driver.find_element_by_id("#btn-variable-buy-now").is_displayed()):
             print('商品開賣！')
             main()
             break

@@ -1,4 +1,4 @@
-URL = "https://www.huahuacomputer.com.tw/products/acer-%E5%AE%8F%E7%A2%81-nitro5-an515-55-70h2-%E9%BB%91-%E9%9B%BB%E7%AB%B6%E7%AD%86%E9%9B%BB"
+URL = "https://www.huahuacomputer.com.tw/products/gigabyte-%E6%8A%80%E5%98%89-aorus-15g-yb-%E6%A9%9F%E6%A2%B0%E8%BB%B8%E9%9B%BB%E7%AB%B6%E7%AD%86%E9%9B%BB-1"
 DRIVER_PATH = "chromedriver.exe"
 CHROME_PATH = r"--user-data-dir=C:\\Users\brian\AppData\\Local\\Google\\Chrome\\User Data\Default"  # 可透過網址列輸入 chrome://version/ 找到
 
