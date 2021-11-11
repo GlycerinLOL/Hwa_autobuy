@@ -93,21 +93,14 @@ def main():
     click_button_id('#btn-variable-buy-now')
 
     """
-    登入帳戶（若有使用 CHROME_PATH 記住登入資訊，第二次執行時可註解掉）
-    """
-    try:
-        login()
-    except:
-        print('Already Logged in!')
-
-    """
     前往結帳 (一次付清) (要使用 JS 的方式 execute_script 點擊)
     """
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, "a.btn:nth-child(2)"))
     )
     driver.find_element_by_css_selector("a.btn:nth-child(2)").click()
-
+    
 
     """
     勾選同意（注意！若帳號有儲存付款資訊的話，不需要再次勾選，請註解掉！）
@@ -117,14 +110,14 @@ def main():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    
+    '''
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    
+    '''
 
     os.system("pause")
 
@@ -139,21 +132,14 @@ def main2():
     driver.refresh()
 
     """
-    登入帳戶（若有使用 CHROME_PATH 記住登入資訊，第二次執行時可註解掉）
-    """
-    try:
-        login()
-    except:
-        print('Already Logged in!')
-
-    """
     前往結帳 (一次付清) (要使用 JS 的方式 execute_script 點擊)
     """
+    
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, "a.btn:nth-child(2)"))
     )
     driver.find_element_by_css_selector("a.btn:nth-child(2)").click()
-
+    
 
     """
     勾選同意（注意！若帳號有儲存付款資訊的話，不需要再次勾選，請註解掉！）
@@ -163,14 +149,14 @@ def main2():
     """
     送出訂單 (要使用 JS 的方式 execute_script 點擊)
     """
-    
+    '''
     WebDriverWait(driver, 20).until(
         expected_conditions.element_to_be_clickable(
             (By.ID, "place-order-btn"))
     )
     button = driver.find_element_by_id("place-order-btn")
     driver.execute_script("arguments[0].click();", button)
-    
+    '''
 
     os.system("pause")
     
@@ -180,10 +166,10 @@ def main2():
 抓取商品開賣資訊，並嘗試搶購
 """
 
-target_time=datetime.datetime(2021,11,11,23,12,00)
+target_time=datetime.datetime(2021,11,11,23,15,00)
 
 curr_time=datetime.datetime.now()
-wait_sec = 0.5    # 1 秒後重試，可自行調整秒數
+wait_sec = 0.3    # 1 秒後重試，可自行調整秒數
 
 
 if __name__ == "__main__":
@@ -191,10 +177,16 @@ if __name__ == "__main__":
         driver.get(URL)
         if(driver.find_element_by_id("#btn-variable-buy-now").is_displayed()):
             print('商品開賣！')
+            driver.get("https://www.huahuacomputer.com.tw/users/sign_in")
+            if(driver.find_elements_by_css_selector("form.simple_form:nth-child(7) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > input:nth-child(1)")):
+                login()
             main()
             break
         elif(driver.find_element_by_id("btn-main-checkout").is_enabled()):
+            driver.get("https://www.huahuacomputer.com.tw/users/sign_in")
             print('商品開賣！')
+            if(driver.find_elements_by_css_selector("form.simple_form:nth-child(7) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > input:nth-child(1)")):
+                login()
             main2()
             break
         else:
